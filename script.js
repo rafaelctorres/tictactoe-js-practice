@@ -21,51 +21,49 @@ function getComputerChoice(){
   }
 }
 
-console.log(getPlayerChoice());
-console.log(getComputerChoice());
 
-switch (getPlayerChoice()){
-  case "rock":
-    if (getComputerChoice() === "rock"){
-      console.log("it's a tie!");
-    } else if (getComputerChoice() === "paper"){
-      console.log("computer wins!");
-      computerScore += 1;
-    } else if (getComputerChoice() === scissor) {
-      console.log("player wins!");
-      playerScore += 1;
-    }
-    break;
-  case "paper":
-    if (getComputerChoice() === "rock"){
-      console.log("player wins!");
-      playerScore += 1;
-    } else if (getComputerChoice() === "paper"){
-      console.log("it's a tie!");
-    } else if (getComputerChoice() === "scissor") {
-      console.log("computer wins!");
-      computerScore += 1;
-      break;
-      }
+playRound(getPlayerChoice, getComputerChoice);
+
+function playRound(playerChoice, computerChoice){
+    const roundComputerChoice = computerChoice();
+    const roundPlayerChoice = playerChoice();
+
+    console.log("voce jogou: " + roundPlayerChoice);
+    console.log("o computador jogou: " + roundComputerChoice);
+
+    switch (roundPlayerChoice){
+    case "rock":
+        if (roundComputerChoice === "rock"){
+        console.log("it's a tie!");
+        } else if (roundComputerChoice === "paper"){
+        console.log("computer wins!");
+        computerScore += 1;
+        } else if (roundComputerChoice === "scissor") {
+        console.log("player wins!");
+        playerScore += 1;
+        }
+        break;
+    case "paper":
+        if (roundComputerChoice === "rock"){
+        console.log("player wins!");
+        playerScore += 1;
+        } else if (roundComputerChoice === "paper"){
+        console.log("it's a tie!");
+        } else if (roundComputerChoice === "scissor") {
+        console.log("computer wins!");
+        computerScore += 1;
+        break;
+        }
     case "scissor":  
-      if (getComputerChoice() === "rock"){
-      console.log("computer wins!");
-      computerScore += 1;
-    } else if (getComputerChoice() === "paper"){
-      console.log("computer wins!");
-      computerScore += 1;
-    } else if (getComputerChoice() === scissor) {
-      console.log("it's a tie!");
-      break;
-    }
-    }
-
-
-
-// commit message: Add functions to get values and calculate a winner
-//
-//Functions get input either provided randomly or by a prompt to return
-//their values. added switch/case statement that calculates the winner,
-//although it is not inside of a function and there's no global variable
-//to store player's or computer's choice, so through the conditional that
-//determines the winners, the values are calculate once again.
+        if (roundComputerChoice === "rock"){
+        console.log("computer wins!");
+        computerScore += 1;
+        } else if (roundComputerChoice === "paper"){
+        console.log("player wins!");
+        playerScore += 1;
+        } else if (roundComputerChoice === "scissor") {
+        console.log("it's a tie!");
+        break;
+        }
+        }
+}
