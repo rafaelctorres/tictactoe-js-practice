@@ -1,4 +1,5 @@
 const buttons = document.querySelector("ul");
+const divResults = document.querySelector(".results");
 let playerScore = 0;
 let computerScore = 0;
 let currentPlayerChoice;
@@ -51,9 +52,21 @@ function showResult(){
     }
 }
 
+
+
 function playRound(playerChoice, computerChoice){
     const roundComputerChoice = computerChoice();
     const roundPlayerChoice = playerChoice;
+    
+    function showRoundChoices(){
+        //criar paragrafo
+        const thisRound = document.createElement("p");
+        thisRound.textContent = "voce jogou: " + roundPlayerChoice + " o computador jogou: " + roundComputerChoice
+        divResults.appendChild(thisRound);
+        //append child
+    }
+    
+    showRoundChoices();
 
     console.log("voce jogou: " + roundPlayerChoice);
     console.log("o computador jogou: " + roundComputerChoice);
