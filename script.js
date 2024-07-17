@@ -65,7 +65,15 @@ function playRound(playerChoice, computerChoice){
         divResults.appendChild(thisRound);
         //append child
     }
-    
+
+    function showWinner(winner){
+        //criar paragrafo
+        const thisRound = document.createElement("p");
+        thisRound.textContent = winner;
+        divResults.appendChild(thisRound);
+    }
+
+
     showRoundChoices();
 
     console.log("voce jogou: " + roundPlayerChoice);
@@ -75,34 +83,43 @@ function playRound(playerChoice, computerChoice){
     case "rock":
         if (roundComputerChoice === "rock"){
         console.log("it's a tie!");
+        showWinner("it's a tie!")
         } else if (roundComputerChoice === "paper"){
         console.log("computer wins!");
+        showWinner("computer wins!")
         computerScore += 1;
         } else if (roundComputerChoice === "scissor") {
         console.log("player wins!");
+        showWinner("player wins!")
         playerScore += 1;
         }
         break;
     case "paper":
         if (roundComputerChoice === "rock"){
         console.log("player wins!");
+        showWinner("player wins!");
         playerScore += 1;
         } else if (roundComputerChoice === "paper"){
         console.log("it's a tie!");
+        showWinner("it's a tie!");
         } else if (roundComputerChoice === "scissor") {
         console.log("computer wins!");
+        showWinner("computer wins!");
         computerScore += 1;
         }
         break;
     case "scissor":  
         if (roundComputerChoice === "rock"){
         console.log("computer wins!");
+        showWinner("computer wins!");
         computerScore += 1;
         } else if (roundComputerChoice === "paper"){
         console.log("player wins!");
+        showWinner("player wins!");
         playerScore += 1;
         } else if (roundComputerChoice === "scissor") {
         console.log("it's a tie!");
+        showWinner("it's a tie!");
         }
         break;
         }
