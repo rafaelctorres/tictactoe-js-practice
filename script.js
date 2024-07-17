@@ -1,12 +1,35 @@
-function getPlayerChoice(){
-  let playerChoice= prompt("Pedra, papel ou tesoura?", "qual vai ser?")
-  switch (playerChoice.toLowerCase()){
-    case "pedra": return "rock";
-    case "papel": return "paper";
-    case "tesoura": return "scissor"
-    default: return undefined;
- }
-}
+const buttons = document.querySelector("ul");
+let playerScore = 0;
+let computerScore = 0;
+let currentPlayerChoice;
+
+buttons.addEventListener('click', function (e){
+    let target = e.target;
+    //return target.id;
+    switch (target.id) {
+        case "rock": 
+            currentPlayerChoice = "rock";
+            playRound(currentPlayerChoice,getComputerChoice);
+            if(playerScore > 2 || computerScore > 2){
+                showResult();
+            }
+            break;
+        case "paper": 
+            currentPlayerChoice = "paper";
+            playRound(currentPlayerChoice,getComputerChoice);
+            if(playerScore > 2 || computerScore > 2){
+                showResult();
+            }
+            break;
+        case "scissor": 
+            currentPlayerChoice = "scissor";
+            playRound(currentPlayerChoice,getComputerChoice);
+            if(playerScore > 2 || computerScore > 2){
+                showResult();
+            }
+            break;        
+    }
+});
 
 function getComputerChoice(){
   let randomizer = Math.floor(Math.random()*3);
@@ -18,75 +41,60 @@ function getComputerChoice(){
   }
 }
 
-function playGame(){
-    let playerScore = 0;
-    let computerScore = 0;
-
-    playRound(getPlayerChoice, getComputerChoice);
-    playRound(getPlayerChoice, getComputerChoice);
-    playRound(getPlayerChoice, getComputerChoice);
-    playRound(getPlayerChoice, getComputerChoice);
-    playRound(getPlayerChoice, getComputerChoice);
-    showResult();
-    
-    function showResult(){
-        if (playerScore > computerScore){
-            console.log("voce ganhou! o placar ficou: " + playerScore + " a " + computerScore);
-        } else if(computerScore > playerScore){
-            console.log("voce perdeu :( o placar ficou: " + computerScore + " a " + playerScore);
-        } else {
-            console.log("it's a tie!")
-        }
+function showResult(){
+    if (playerScore > computerScore){
+        console.log("voce ganhou! o placar ficou: " + playerScore + " a " + computerScore);
+    } else if(computerScore > playerScore){
+        console.log("voce perdeu :( o placar ficou: " + computerScore + " a " + playerScore);
+    } else {
+        console.log("it's a tie!");
     }
-
-    function playRound(playerChoice, computerChoice){
-        const roundComputerChoice = computerChoice();
-        const roundPlayerChoice = playerChoice();
-    
-        console.log("voce jogou: " + roundPlayerChoice);
-        console.log("o computador jogou: " + roundComputerChoice);
-    
-        switch (roundPlayerChoice){
-        case "rock":
-            if (roundComputerChoice === "rock"){
-            console.log("it's a tie!");
-            } else if (roundComputerChoice === "paper"){
-            console.log("computer wins!");
-            computerScore += 1;
-            } else if (roundComputerChoice === "scissor") {
-            console.log("player wins!");
-            playerScore += 1;
-            }
-            break;
-        case "paper":
-            if (roundComputerChoice === "rock"){
-            console.log("player wins!");
-            playerScore += 1;
-            } else if (roundComputerChoice === "paper"){
-            console.log("it's a tie!");
-            } else if (roundComputerChoice === "scissor") {
-            console.log("computer wins!");
-            computerScore += 1;
-            }
-            break;
-        case "scissor":  
-            if (roundComputerChoice === "rock"){
-            console.log("computer wins!");
-            computerScore += 1;
-            } else if (roundComputerChoice === "paper"){
-            console.log("player wins!");
-            playerScore += 1;
-            } else if (roundComputerChoice === "scissor") {
-            console.log("it's a tie!");
-            }
-            break;
-            }
-    }
-    
-
 }
 
-playGame();
+function playRound(playerChoice, computerChoice){
+    const roundComputerChoice = computerChoice();
+    const roundPlayerChoice = playerChoice;
+
+    console.log("voce jogou: " + roundPlayerChoice);
+    console.log("o computador jogou: " + roundComputerChoice);
+
+    switch (roundPlayerChoice){
+    case "rock":
+        if (roundComputerChoice === "rock"){
+        console.log("it's a tie!");
+        } else if (roundComputerChoice === "paper"){
+        console.log("computer wins!");
+        computerScore += 1;
+        } else if (roundComputerChoice === "scissor") {
+        console.log("player wins!");
+        playerScore += 1;
+        }
+        break;
+    case "paper":
+        if (roundComputerChoice === "rock"){
+        console.log("player wins!");
+        playerScore += 1;
+        } else if (roundComputerChoice === "paper"){
+        console.log("it's a tie!");
+        } else if (roundComputerChoice === "scissor") {
+        console.log("computer wins!");
+        computerScore += 1;
+        }
+        break;
+    case "scissor":  
+        if (roundComputerChoice === "rock"){
+        console.log("computer wins!");
+        computerScore += 1;
+        } else if (roundComputerChoice === "paper"){
+        console.log("player wins!");
+        playerScore += 1;
+        } else if (roundComputerChoice === "scissor") {
+        console.log("it's a tie!");
+        }
+        break;
+        }
+}
+
 
 
 
