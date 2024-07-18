@@ -9,38 +9,17 @@ let gameWinner = document.querySelector(".gameWinner")
 let scoresTracker = document.querySelector(".scoresTracker")
 
 function showScores(){
-    scoresTracker.textContent = "placar atual: player " + playerScore + " x " + computerScore + " computador"; 
+    scoresTracker.textContent = "placar atual: player " + playerScore + " x " + computerScore + " computador."; 
 }
 
 buttons.addEventListener('click', function (e){
-    let target = e.target;
-    //return target.id;
-    switch (target.id) {
-        case "rock": 
-            currentPlayerChoice = "rock";
-            playRound(currentPlayerChoice,getComputerChoice);
-            showScores();
-            if(playerScore > 2 || computerScore > 2){
+    let target = e.target.id;
+    currentPlayerChoice = target;
+    playRound(currentPlayerChoice, getComputerChoice)  
+    showScores();
+    if(playerScore > 2 || computerScore > 2){
                 showFinalResult();
             }
-            break;
-        case "paper": 
-            currentPlayerChoice = "paper";
-            playRound(currentPlayerChoice,getComputerChoice);
-            showScores();
-            if(playerScore > 2 || computerScore > 2){
-                showFinalResult();
-            }
-            break;
-        case "scissor": 
-            currentPlayerChoice = "scissor";
-            playRound(currentPlayerChoice,getComputerChoice);
-            showScores();
-            if(playerScore > 2 || computerScore > 2){
-                showFinalResult();
-            }
-            break;        
-    }
 });
 
 function getComputerChoice(){
@@ -133,3 +112,5 @@ function playRound(playerChoice, computerChoice){
         break;
         }
 }
+
+
