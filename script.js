@@ -6,6 +6,11 @@ let currentPlayerChoice;
 let lastRoundChoices = document.querySelector(".lastRoundChoices");
 let lastRoundWinner = document.querySelector(".lastRoundWinner");
 let gameWinner = document.querySelector(".gameWinner")
+let scoresTracker = document.querySelector(".scoresTracker")
+
+function showScores(){
+    scoresTracker.textContent = "placar atual: player " + playerScore + " x " + computerScore + " computador"; 
+}
 
 buttons.addEventListener('click', function (e){
     let target = e.target;
@@ -14,22 +19,25 @@ buttons.addEventListener('click', function (e){
         case "rock": 
             currentPlayerChoice = "rock";
             playRound(currentPlayerChoice,getComputerChoice);
+            showScores();
             if(playerScore > 2 || computerScore > 2){
-                showResult();
+                showFinalResult();
             }
             break;
         case "paper": 
             currentPlayerChoice = "paper";
             playRound(currentPlayerChoice,getComputerChoice);
+            showScores();
             if(playerScore > 2 || computerScore > 2){
-                showResult();
+                showFinalResult();
             }
             break;
         case "scissor": 
             currentPlayerChoice = "scissor";
             playRound(currentPlayerChoice,getComputerChoice);
+            showScores();
             if(playerScore > 2 || computerScore > 2){
-                showResult();
+                showFinalResult();
             }
             break;        
     }
@@ -45,7 +53,7 @@ function getComputerChoice(){
   }
 }
 
-function showResult(){
+function showFinalResult(){
     if (playerScore > computerScore){
         gameWinner.textContent = "voce ganhou! o placar ficou: " + playerScore + " a " + computerScore;
         console.log("voce ganhou! o placar ficou: " + playerScore + " a " + computerScore);
