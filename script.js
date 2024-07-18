@@ -3,6 +3,9 @@ const divResults = document.querySelector(".results");
 let playerScore = 0;
 let computerScore = 0;
 let currentPlayerChoice;
+let lastRoundChoices = document.querySelector(".lastRoundChoices");
+let lastRoundWinner = document.querySelector(".lastRoundWinner");
+let gameWinner = document.querySelector(".gameWinner")
 
 buttons.addEventListener('click', function (e){
     let target = e.target;
@@ -44,8 +47,10 @@ function getComputerChoice(){
 
 function showResult(){
     if (playerScore > computerScore){
+        gameWinner.textContent = "voce ganhou! o placar ficou: " + playerScore + " a " + computerScore;
         console.log("voce ganhou! o placar ficou: " + playerScore + " a " + computerScore);
     } else if(computerScore > playerScore){
+        gameWinner.textContent = "voce perdeu :( o placar ficou: " + computerScore + " a " + playerScore;
         console.log("voce perdeu :( o placar ficou: " + computerScore + " a " + playerScore);
     } else {
         console.log("it's a tie!");
@@ -60,17 +65,13 @@ function playRound(playerChoice, computerChoice){
     
     function showRoundChoices(){
         //criar paragrafo
-        const thisRound = document.createElement("p");
-        thisRound.textContent = "voce jogou: " + roundPlayerChoice + " o computador jogou: " + roundComputerChoice
-        divResults.appendChild(thisRound);
+        lastRoundChoices.textContent = "voce jogou: " + roundPlayerChoice + ", o computador jogou: " +                             roundComputerChoice;
         //append child
     }
 
     function showWinner(winner){
         //criar paragrafo
-        const thisRound = document.createElement("p");
-        thisRound.textContent = winner;
-        divResults.appendChild(thisRound);
+        lastRoundWinner.textContent = winner;
     }
 
 
@@ -124,7 +125,3 @@ function playRound(playerChoice, computerChoice){
         break;
         }
 }
-
-
-
-
